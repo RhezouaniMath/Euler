@@ -13,22 +13,17 @@ object LargestPalindrome {
 
     @tailrec
     def helpFactor(lengthFactors: Int, acc: List[String]): List[String] ={
-      if (lengthFactors == 0){ acc }
+      if (lengthFactors == 0){
+        acc
+      }
       else{
-        val list = for(string <- acc; i<- 1 to 9) yield string + i
+        val list = for(string <- acc; i<- 0 to 9) yield string + i
         helpFactor(lengthFactors -1, list)
       }
     }
 
-    @tailrec
-    def minimumValueFunction(lengthFactors: Int, acc: Int): Int ={
-      if (lengthFactors == 0){ acc }
-      else{
-        minimumValueFunction(lengthFactors-1, 10*acc)
-      }
-    }
-
-    val minimumValue = minimumValueFunction(lengthFactors-1,1)
+    val power = lengthFactors - 1
+    val minimumValue = 10^power
     val stringList = helpFactor(lengthFactors, List(""))
     val intList = stringList map(_.toInt)
     val filteredList = intList filter(x => x>=minimumValue)
@@ -36,6 +31,19 @@ object LargestPalindrome {
     val palindromeProducts = products filter(x=> isPalindrome(x))
     val largest = palindromeProducts.max
     largest
+
   }
 
 }
+
+
+
+/*
+    @tailrec
+    def minimumValueFunction(lengthFactors: Int, acc: Int): Int ={
+      if (lengthFactors == 0){ acc }
+      else{
+        minimumValueFunction(lengthFactors-1, 10*acc)
+      }
+    }
+ */

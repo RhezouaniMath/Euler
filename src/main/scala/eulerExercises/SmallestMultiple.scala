@@ -26,9 +26,9 @@ object SmallestMultiple {
   }
 
   def smallestMultiple(nr: Int): Long={
-    val seq = for (i<- 1 to nr) yield i
-    val longSeq = seq map (_.toLong)
-    val prod = longSeq.product
+    val list = (1 to nr).toList
+    val longList = list map (_.toLong)
+    val prod = longList.product
     reduce(prod, nr, nr)
   }
 
